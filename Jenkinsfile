@@ -15,8 +15,7 @@ pipeline {
 	sudo sed -i 's/USING/HELLO/g' index.html
 	sudo docker build -t starjo5/testweb:newshop .
         sudo docker push starjo5/testweb:newblog
-	sudo docker push starjo5/testweb:newshop
-        '''
+	sudo docker push starjo5/testweb:newshop'''
       }
     }
     stage('deploy k8s') {
@@ -24,8 +23,7 @@ pipeline {
         sh '''
         sudo kauth
 	sudo kubectl set image deployment deploy-blog ctn-blog=starjo5/testweb:newblog
-	sudo kubectl set image deployment deploy-shop ctn-shop=starjo5/testweb:newshop
-        '''
+	sudo kubectl set image deployment deploy-shop ctn-shop=starjo5/testweb:newshop'''
       }
     }
   }
