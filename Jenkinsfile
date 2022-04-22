@@ -10,8 +10,12 @@ pipeline {
     stage('docker build and push') {
       steps {
         sh '''
-        sudo docker build -t starjo5/testweb:newnewmain .
-        sudo docker push starjo5/testweb:newnewmain
+	sudo sed -i 's/USING/HIHI/g' index.html
+        sudo docker build -t starjo5/testweb:newblog .
+	sudo sed -i 's/USING/HELLO/g' index.html
+	sudo docker build -t starjo5/testweb:newshop .
+        sudo docker push starjo5/testweb:newblog
+	sudo docker push starjo5/testweb:newshop
         '''
       }
     }
@@ -19,7 +23,8 @@ pipeline {
       steps {
         sh '''
         sudo kauth
-	sudo kubectl set image deployment  deploy-main ctn-main=starjo5/testweb:newnewmain
+	sudo kubectl set image deployment deploy-blog ctn-blog=starjo5/testweb:newblog
+	sudo kubectl set image deployment deploy-shop ctn-shop=starjo5/testweb:newshop
         '''
       }
     }
