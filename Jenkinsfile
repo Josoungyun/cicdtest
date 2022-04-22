@@ -11,7 +11,7 @@ pipeline {
         sh '''
         sudo sed -i 's/USING/HIHI/g' index.html
         sudo docker build -t starjo5/testweb:newblog .
-        sudo sed -i 's/HIHI/HELLO/g' index.html
+        sudo sed -i 's/MAIN/HELLO/g' index.html
         sudo docker build -t starjo5/testweb:newshop .
         sudo docker push starjo5/testweb:newblog
         sudo docker push starjo5/testweb:newshop
