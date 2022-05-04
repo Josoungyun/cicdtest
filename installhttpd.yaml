@@ -1,6 +1,6 @@
 ---
 - name: centos install httpd
-  hosts: localhost
+  hosts: all
   become: yes
 
   tasks:
@@ -12,4 +12,5 @@
     - name: started httpd
       service:
         name: httpd
+        state: started
         enabled: true
