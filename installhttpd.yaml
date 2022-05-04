@@ -1,0 +1,15 @@
+---
+- name: centos install httpd
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: install httpd
+      yum:
+        name: httpd
+        state: present
+
+    - name: started httpd
+      service:
+        name: httpd
+        enabled: ture
